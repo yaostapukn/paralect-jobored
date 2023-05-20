@@ -1,10 +1,25 @@
-export function Filter({ onChangeFilterConfig }) {
-  const handleClickFilter = () => {
-    onChangeFilterConfig('тут конфиг который я меняю')
+import { Select } from '@mantine/core'
+import { useState } from 'react'
+export function Filter({ onChangeFilterConfig, cataloges }) {
+
+  //ключ отрасли
+  const [catalogeKey, setCatalogeKey] = useState()
+
+  const handleApplyFilter = () => {
+    onChangeFilterConfig(catalogeKey)
   }
+
   return (
     <>
-      <button onClick={handleClickFilter}>отправить</button>
+      <Select
+        label="Your favorite framework/library"
+        placeholder="Выберите отрасль"
+        data={cataloges}
+        dropdownPosition="bottom"
+        value={catalogeKey}
+        onChange={setCatalogeKey}
+      />
     </>
   )
 }
+

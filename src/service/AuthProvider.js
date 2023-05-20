@@ -76,17 +76,26 @@ export function AuthProvider({ children }) {
     })
     const data = await response.json()
     console.log(data)
-    return data.title_trimmed
+    const catalogesData = data.map(changeViewCataloges)
+    return catalogesData
   }
 
   const contextData = {
     getAuthToken,
     getVacancies,
     getVacancyById,
+    getCataloges,
   }
 
-  function changeViewJob(job) {
-    function paymentDisplay(to, from, currency) {
+  const changeViewCataloges = (cataloges) => {
+    return {
+      value: cataloges.key,
+      label: cataloges.title_rus,
+    }
+  }
+
+  const changeViewJob = (job) => {
+    const paymentDisplay = (to, from, currency) => {
       let paymentRange, payment
 
       if (from === to || from === 0) {
