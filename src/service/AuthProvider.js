@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
 
   const getAuthToken = async () => {
     const response = await fetch(
-      `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}`,
+      `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}/`,
       {
         method: 'GET',
         headers: {
@@ -61,7 +61,7 @@ export function AuthProvider({ children }) {
   }
 
   const getVacancyById = async (id) => {
-    const response = await fetch(`${_apibase}vacancies/${id}`, {
+    const response = await fetch(`${_apibase}vacancies/${id}/`, {
       method: 'GET',
       headers: HEADERS,
     })
@@ -70,12 +70,12 @@ export function AuthProvider({ children }) {
   }
 
   const getCataloges = async () => {
-    const response = await fetch(`${_apibase}catalogues`, {
+    const response = await fetch(`${_apibase}catalogues/`, {
       method: 'GET',
       headers: HEADERS,
     })
     const data = await response.json()
-    console.log(data)
+   
     const catalogesData = data.map(changeViewCataloges)
     return catalogesData
   }

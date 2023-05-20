@@ -9,12 +9,12 @@ export function JobSeacrch() {
   const [vacancies, setVacancies] = useState(null)
   const [cataloges, setCataloges] = useState([])
 
-  const filterConfig = {
+  const [filterConfig, setFilterConfig] = useState({
     keyword: '',
     paymentFrom: '',
     paymentTo: '',
     catalogues: '',
-  }
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,14 +25,20 @@ export function JobSeacrch() {
       const catalogesData = await getCataloges()
       setVacancies(vacanciesData)
       setCataloges(catalogesData)
+      console.log('главный фетч');
     }
     fetchData()
-  }, [])
-
+  }, [filterConfig])
 
   //func callback filer
   const handleChangeFilterConfig = (catalogeKey) => {
-    console.log(filterProp)
+    setFilterConfig({
+      keyword: '',
+      paymentFrom: '',
+      paymentTo: '',
+      catalogues: catalogeKey,
+    })
+    console.log(vacancies, filterConfig)
   }
   return (
     <>
