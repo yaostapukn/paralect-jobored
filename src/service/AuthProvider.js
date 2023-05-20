@@ -43,17 +43,20 @@ export function AuthProvider({ children }) {
     }
   }
 
-  const getVacancies = async (numPage = 2) => {
+  const getVacancies = async (filterConfig, numPage = 1) => {
+    const { keyword, paymentFrom, paymentTo, catalogues } = filterConfig
+
+    const filterUrl = `&keyword=${keyword}&payment_from=${paymentFrom}&payment_to=${paymentTo}&catalogues=${catalogues}`
     const response = await fetch(
-      `${_apibase}vacancies/?page=${numPage}&count=4&no_agreement=1`,
+      `${_apibase}vacancies/?page=${numPage}&count=4&no_agreement=1&published=1${filterUrl}`,
       {
         method: 'GET',
         headers: HEADERS,
       }
     )
-    console.log('вакансии')
+
     const data = await response.json()
-    const vacancies = data?.objects?.map(changeViewJob)
+    const vacancies = data.objects.map(changeViewJob)
     return vacancies
   }
 
@@ -75,7 +78,7 @@ export function AuthProvider({ children }) {
     console.log(data)
     return data.title_trimmed
   }
-  getCataloges()
+
   const contextData = {
     getAuthToken,
     getVacancies,

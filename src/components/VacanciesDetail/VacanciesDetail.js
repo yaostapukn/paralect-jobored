@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import AuthContext from '../../service/AuthProvider'
 import { Loader } from '../Loader/Loader'
-export function VacanciesDetail({ vaca }) {
+export function VacanciesDetail() {
   const { getVacancyById } = useContext(AuthContext)
   const { id } = useParams()
   const [vacancyDetail, setVacancyDetail] = useState(null)
