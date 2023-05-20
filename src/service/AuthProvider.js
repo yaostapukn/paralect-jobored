@@ -16,6 +16,13 @@ export function AuthProvider({ children }) {
     _xApiAppId,
   } = urlsBase
 
+  const HEADERS = {
+    'Content-Type': 'application/json',
+    'x-secret-key': _secretkey,
+    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
+    'X-Api-App-Id': _xApiAppId,
+  }
+
   const getAuthToken = async () => {
     const response = await fetch(
       `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}`,
@@ -41,39 +48,50 @@ export function AuthProvider({ children }) {
       `${_apibase}vacancies/?page=${numPage}&count=4&no_agreement=1`,
       {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-secret-key': _secretkey, 
-          Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
-          'X-Api-App-Id': _xApiAppId,
-        },
+        headers: HEADERS,
       }
     )
     console.log('вакансии')
     const data = await response.json()
     const vacancies = data?.objects?.map(changeViewJob)
     return vacancies
-   
   }
 
+  const getVacancyById = async (id) => {
+    const response = await fetch(`${_apibase}vacancies/${id}`, {
+      method: 'GET',
+      headers: HEADERS,
+    })
+    const data = await response.json()
+    return data
+  }
+
+  const getCataloges = async () => {
+    const response = await fetch(`${_apibase}catalogues`, {
+      method: 'GET',
+      headers: HEADERS,
+    })
+    const data = await response.json()
+    console.log(data)
+    return data.title_trimmed
+  }
+  getCataloges()
   const contextData = {
     getAuthToken,
     getVacancies,
+    getVacancyById,
   }
 
   function changeViewJob(job) {
     function paymentDisplay(to, from, currency) {
       let paymentRange, payment
 
-      if (to > from) {
-        paymentRange = `${from} - ${to}`
-        payment = `от ${from}`
-      } else if (to === from || from === 0) {
-        paymentRange = to
-        payment = to
-      } else {
-        paymentRange = `${from}`
-        payment = `от ${from}`
+      if (from === to || from === 0) {
+        return `з/п ${to} ${currency}`
+      } else if (from < to) {
+        return `з/п ${from} - ${to} ${currency}`
+      } else if (to === 0) {
+        return `з/п от ${from} ${currency}`
       }
 
       return `з/п ${paymentRange} ${currency}`

@@ -4,8 +4,8 @@ export function VacanciesCard({ vacancies }) {
     <>
       {vacancies.map((vacancy) => (
         <div key={vacancy.id}>
-          <Link to={`/${vacancy.id}`}>{vacancy.id}</Link>
-          <div>{vacancy.payment}</div>
+          <Link to={`/${vacancy.id}`}>{vacancy.vacancy}</Link>
+
           <div>{vacancy.typeOfWork}</div>
           <div>{vacancy.payment}</div>
           <div>{vacancy.city}</div>

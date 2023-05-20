@@ -8,6 +8,7 @@ export default function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<JobSeacrch />} />
+          <Route path="/:id" element={<VacanciesDetail />} />
         </Routes>
       </AuthProvider>
     </Router>
