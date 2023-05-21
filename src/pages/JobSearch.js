@@ -57,6 +57,7 @@ export function JobSeacrch() {
   }
   return (
     <div className="vacancies">
+      проверить деплой
       <Filter
         className="vacancies__filter__search"
         onChangeFilterConfig={handleChangeFilterConfig}
