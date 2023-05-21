@@ -1,0 +1,64 @@
+.vacancy__wrap {
+  width: 773px;
+  border: 1px solid #eaebed;
+  border-radius: 12px;
+  height: 137px;
+  margin-bottom: 12px;
+}
+.vacancy {
+  margin: 24px;
+  height: 89px;
+}
+
+.vacancy__title a {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #5e96fc;
+}
+.vacancy__title {
+  margin-bottom: 12px;
+}
+.vacancy__title:hover {
+  opacity: 0.5;
+}
+.vacancy__type__payment {
+  display: flex;
+
+  align-items: center;
+}
+.vacancy__point {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0 12px;
+  color: #7b7c88;
+}
+.vacancy__payment {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
+.vacancy__city__wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+.vacancy__city {
+  margin-left: 8px;
+}
+.vacancy__city,
+.vacancy__type {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}

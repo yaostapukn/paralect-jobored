@@ -16,16 +16,16 @@ export function AuthProvider({ children }) {
     _xApiAppId,
   } = urlsBase
 
-  const HEADERS = {
-    'Content-Type': 'application/json',
-    'x-secret-key': _secretkey,
-    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
-    'X-Api-App-Id': _xApiAppId,
-  }
+  // const HEADERS = {
+  //   'Content-Type': 'application/json',
+  //   'x-secret-key': _secretkey,
+  //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
+  //   'X-Api-App-Id': _xApiAppId,
+  // }
 
   const getAuthToken = async () => {
     const response = await fetch(
-      `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}/`,
+      `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}`,
       {
         method: 'GET',
         headers: {
@@ -35,23 +35,27 @@ export function AuthProvider({ children }) {
       }
     )
     const data = await response.json()
-    console.log('токен')
+    console.log(data)
     if (data) {
       localStorage.setItem('authTokens', JSON.stringify(data.access_token))
-    } else {
-      alert('ошибка в запросе токена')
     }
   }
 
-  const getVacancies = async (filterConfig, numPage = 1) => {
-    const { keyword, paymentFrom, paymentTo, catalogues } = filterConfig
+  const getVacancies = async (filterConfig, keyword, numPage = 1) => {
+    const { paymentFrom, paymentTo, catalogues } = filterConfig
 
-    const filterUrl = `&keyword=${keyword}&payment_from=${paymentFrom}&payment_to=${paymentTo}&catalogues=${catalogues}`
+    const filterSeacrhUrl = `&keyword=${keyword}&payment_from=${paymentFrom}&payment_to=${paymentTo}&catalogues=${catalogues}`
     const response = await fetch(
-      `${_apibase}vacancies/?page=${numPage}&count=4&no_agreement=1&published=1${filterUrl}`,
+      `${_apibase}vacancies/?page=${numPage}&count=4&no_agreement=1&published=1${filterSeacrhUrl}`,
       {
         method: 'GET',
-        headers: HEADERS,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-secret-key': _secretkey,
+          Authorization:
+            'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
+          'X-Api-App-Id': _xApiAppId,
+        },
       }
     )
 
@@ -63,7 +67,13 @@ export function AuthProvider({ children }) {
   const getVacancyById = async (id) => {
     const response = await fetch(`${_apibase}vacancies/${id}/`, {
       method: 'GET',
-      headers: HEADERS,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-secret-key': _secretkey,
+        Authorization:
+          'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
+        'X-Api-App-Id': _xApiAppId,
+      },
     })
     const data = await response.json()
     return data
@@ -72,10 +82,16 @@ export function AuthProvider({ children }) {
   const getCataloges = async () => {
     const response = await fetch(`${_apibase}catalogues/`, {
       method: 'GET',
-      headers: HEADERS,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-secret-key': _secretkey,
+        Authorization:
+          'Bearer ' + JSON.parse(localStorage.getItem('authTokens')),
+        'X-Api-App-Id': _xApiAppId,
+      },
     })
     const data = await response.json()
-   
+
     const catalogesData = data.map(changeViewCataloges)
     return catalogesData
   }
@@ -111,7 +127,7 @@ export function AuthProvider({ children }) {
 
     return {
       id: job.id,
-      vacancy: job.profession,
+      vacancy: job.profession.substring(0, 60),
       vacancyDetail: job.vacancyRichText,
       city: job.town.title,
       typeOfWork: job.type_of_work.title,

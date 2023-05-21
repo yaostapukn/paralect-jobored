@@ -1,5 +1,6 @@
 import { Vacancies } from '../components/Vacancies/Vacancies'
 import { Filter } from '../components/Filter/Filter'
+import { SearchVacancy } from '../components/Search/SearchVacancy'
 import AuthContext from '../service/AuthProvider'
 import { useState, useEffect, useContext } from 'react'
 export function JobSeacrch() {
@@ -10,43 +11,53 @@ export function JobSeacrch() {
   const [cataloges, setCataloges] = useState([])
 
   const [filterConfig, setFilterConfig] = useState({
-    keyword: '',
     paymentFrom: '',
     paymentTo: '',
     catalogues: '',
   })
+  const [searchConfig, setSearchConfig] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       if (!localStorage.getItem('authTokens')) {
         await getAuthToken()
       }
-      const vacanciesData = await getVacancies(filterConfig)
+      const vacanciesData = await getVacancies(filterConfig, searchConfig)
       const catalogesData = await getCataloges()
       setVacancies(vacanciesData)
       setCataloges(catalogesData)
-      console.log('главный фетч');
+      setLoading(true)
     }
     fetchData()
-  }, [filterConfig])
+  }, [filterConfig, searchConfig])
 
   //func callback filer
-  const handleChangeFilterConfig = (catalogeKey) => {
+  const handleChangeFilterConfig = (
+    catalogeKey = '',
+    payFrom = null,
+    payTo = null
+  ) => {
+    setLoading(false)
     setFilterConfig({
-      keyword: '',
-      paymentFrom: '',
-      paymentTo: '',
+      paymentFrom: payFrom,
+      paymentTo: payTo,
       catalogues: catalogeKey,
     })
-    console.log(vacancies, filterConfig)
+  }
+
+  const handleChangeSearchConfig = (keyword = '') => {
+    setSearchConfig(keyword)
   }
   return (
     <>
-      <Vacancies vacancies={vacancies} />
       <Filter
         onChangeFilterConfig={handleChangeFilterConfig}
         cataloges={cataloges}
       />
+      <SearchVacancy onChangeSearchConfig={handleChangeSearchConfig} />
+      <Vacancies vacancies={vacancies} loading={loading} />
     </>
   )
 }

@@ -1,10 +1,12 @@
-import { useState, useEffect, useContext } from 'react'
-import AuthContext from '../../service/AuthProvider'
 import { Loader } from '../Loader/Loader'
 import { VacanciesCard } from '../VacanciesCard/VacanciesCard'
-export function Vacancies({ vacancies }) {
-  if (!vacancies) {
+export function Vacancies({ vacancies, loading }) {
+  if (!loading) {
     return <Loader />
   }
-  return <>{vacancies && <VacanciesCard vacancies={vacancies} />}</>
+  return (
+    <div className="vacancies__cards">
+      {vacancies && <VacanciesCard vacancies={vacancies} />}
+    </div>
+  )
 }
