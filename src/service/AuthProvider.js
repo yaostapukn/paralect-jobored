@@ -111,18 +111,18 @@ export function AuthProvider({ children }) {
   }
 
   const changeViewJob = (job) => {
-    const paymentDisplay = (to, from, currency) => {
-      let paymentRange, payment
+    const paymentDisplay = (to, from, payment) => {
+      let paymentRange
 
       if (from === to || from === 0) {
-        return `з/п ${to} ${currency}`
+        return `з/п ${to} ${payment}`
       } else if (from < to) {
-        return `з/п ${from} - ${to} ${currency}`
+        return `з/п ${from} - ${to} ${payment}`
       } else if (to === 0) {
-        return `з/п от ${from} ${currency}`
+        return `з/п от ${from} ${payment}`
       }
 
-      return `з/п ${paymentRange} ${currency}`
+      return `з/п ${paymentRange} ${payment}`
     }
 
     return {

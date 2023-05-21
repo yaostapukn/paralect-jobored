@@ -1,0 +1,47 @@
+.header__title h1 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+
+  letter-spacing: -0.02em;
+
+  color: #232134;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  width: 141px;
+  height: 36px;
+  justify-content: space-between;
+}
+
+.header__nav {
+  height: 20px;
+  display: flex;
+  width: 275px;
+  justify-content: space-between;
+
+}
+.header__link {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #5e96fc;
+}
+
+.header__nav__wrap{
+    display: flex;
+    justify-content: center;
+    width: 75%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 84px;
+}
