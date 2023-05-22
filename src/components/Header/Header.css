@@ -16,6 +16,7 @@
   width: 141px;
   height: 36px;
   justify-content: space-between;
+  margin-left: 162px;
 }
 
 .header__nav {
@@ -23,9 +24,8 @@
   display: flex;
   width: 275px;
   justify-content: space-between;
-
 }
-.header__link {
+.header__link__active {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -33,11 +33,19 @@
   line-height: 20px;
   color: #5e96fc;
 }
+.header__link {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #232134;
+}
 
-.header__nav__wrap{
-    display: flex;
-    justify-content: center;
-    width: 75%;
+.header__nav__wrap {
+  display: flex;
+  justify-content: center;
+  width: 60%;
 }
 
 header {

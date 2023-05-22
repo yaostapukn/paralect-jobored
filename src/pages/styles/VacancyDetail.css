@@ -1,0 +1,19 @@
+.vacancydetail__text {
+  border: 1px solid #eaebed;
+  border-radius: 12px;
+  width: 773px;
+}
+.vacancydetail__richtext {
+    margin: 24px;
+}
+
+.vacancydetail__wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.loader__wrap {
+  display: flex;
+  justify-content: center
+  
+}

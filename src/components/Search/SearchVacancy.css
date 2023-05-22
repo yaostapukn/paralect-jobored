@@ -1,7 +1,14 @@
 .search {
   display: flex;
+  align-items: center;
 }
 
 .search input {
   width: 773px;
+  height: 48px;
+}
+.search__button {
+  position: absolute;
+  z-index: 1;
+  margin-left: 678px;
 }

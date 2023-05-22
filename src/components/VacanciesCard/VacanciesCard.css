@@ -10,7 +10,7 @@
   height: 89px;
 }
 
-.vacancy__title a {
+.vacancy__title__link a {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -18,10 +18,21 @@
   line-height: 24px;
   color: #5e96fc;
 }
+.vacancy__title h1 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #232134;
+}
+.vacancy__title__link {
+  margin-bottom: 12px;
+}
 .vacancy__title {
   margin-bottom: 12px;
 }
-.vacancy__title:hover {
+.vacancy__title__link:hover {
   opacity: 0.5;
 }
 .vacancy__type__payment {

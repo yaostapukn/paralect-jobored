@@ -1,12 +1,13 @@
-import { Loader } from '../Loader/Loader'
+import { LoaderComp } from '../Loader/Loader'
 import { VacanciesCard } from '../VacanciesCard/VacanciesCard'
+import NotFound from '../Oops/NotFound'
 export function Vacancies({ vacancies, loading }) {
   if (!loading) {
-    return <Loader />
+    return <LoaderComp />
   }
 
   if (vacancies.length === 0) {
-    return <div>УПС</div>
+    return <NotFound />
   }
   return (
     <div className="vacancies__cards">

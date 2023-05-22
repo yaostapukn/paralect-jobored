@@ -1,4 +1,13 @@
-import './Loader.css'
-export function Loader() {
-  return <div className="loader"></div>
+import { Loader } from '@mantine/core'
+export function LoaderComp() {
+  return (
+    <div className="loader__wrap">
+      <Loader
+        color="indigo"
+        size="xl"
+        variant="dots"
+        className="loader__comp"
+      />
+    </div>
+  )
 }

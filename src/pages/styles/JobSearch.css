@@ -1,0 +1,14 @@
+.vacancies__search__vacancies {
+    width: 773px;
+}
+
+.vacancies {
+    display: flex;
+    justify-content: center;
+}
+.vacancies__filter{
+    margin-right: 28px;
+}
+.vacancies__search {
+    margin-bottom: 16px;
+}

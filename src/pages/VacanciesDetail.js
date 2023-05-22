@@ -1,8 +1,11 @@
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import AuthContext from '../service/AuthProvider'
-import { Loader } from '../components/Loader/Loader'
+import { LoaderComp } from '../components/Loader/Loader'
 import { VacanciesCard } from '../components/VacanciesCard/VacanciesCard'
+import { TypographyStylesProvider } from '@mantine/core'
+import './styles/VacancyDetail.css'
+
 export function VacanciesDetail() {
   const { getVacancyById } = useContext(AuthContext)
   const { id } = useParams()
@@ -18,18 +21,25 @@ export function VacanciesDetail() {
   }, [])
 
   if (!vacancyDetail) {
-    return <Loader />
+    return <LoaderComp />
   }
 
   return (
     <>
       {vacancyDetail && (
-        <>
-          <VacanciesCard vacancies={vacancyDetail} />
-          <div
-            dangerouslySetInnerHTML={{ __html: vacancyDetail[0].vacancyDetail }}
-          ></div>
-        </>
+        <div className="vacancydetail__wrap">
+          <div className="vacancydetail">
+            <VacanciesCard vacancies={vacancyDetail} isLink={false} />
+            <TypographyStylesProvider className="vacancydetail__text">
+              <div
+                className="vacancydetail__richtext"
+                dangerouslySetInnerHTML={{
+                  __html: vacancyDetail[0].vacancyDetail,
+                }}
+              ></div>
+            </TypographyStylesProvider>
+          </div>
+        </div>
       )}
     </>
   )

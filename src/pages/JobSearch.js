@@ -4,7 +4,8 @@ import { SearchVacancy } from '../components/Search/SearchVacancy'
 import AuthContext from '../service/AuthProvider'
 import { useState, useEffect, useContext } from 'react'
 
-import './JobSearch.css'
+import './styles/JobSearch.css'
+import { LoaderComp } from '../components/Loader/Loader'
 
 export function JobSeacrch() {
   //context
@@ -27,7 +28,7 @@ export function JobSeacrch() {
       if (!localStorage.getItem('authTokens')) {
         await getAuthToken()
       }
-      
+
       const vacanciesData = await getVacancies(filterConfig, searchConfig)
       const catalogesData = await getCataloges()
       setVacancies(vacanciesData)
@@ -44,27 +45,38 @@ export function JobSeacrch() {
     payTo = null
   ) => {
     setLoading(false)
-    
+
     setFilterConfig({
       paymentFrom: payFrom,
       paymentTo: payTo,
       catalogues: catalogeKey,
     })
   }
+
+
   //func callback search
-  const handleChangeSearchConfig = (keyword = '') => {
-    setLoading(false)
+  const handleChangeSearchConfig = (keyword) => {
+    //из-того что если keyword не поменяется setSearchConfig
+    //не сработает => вечный loading, пробывал useRef в SearchVacancy
+    //но что то не вышло
+    //TODO : если состаяние не поменялось setSearchConfig должен сетить
+
+    // setLoading(false)
+
     setSearchConfig(keyword)
   }
   return (
     <div className="vacancies">
-      <Filter
-        className="vacancies__filter__search"
-        onChangeFilterConfig={handleChangeFilterConfig}
-        cataloges={cataloges}
-      />
+      <div className="vacancies__filter">
+        <Filter
+          onChangeFilterConfig={handleChangeFilterConfig}
+          cataloges={cataloges}
+        />
+      </div>
       <div className="vacancies__search__vacancies">
-        <SearchVacancy onChangeSearchConfig={handleChangeSearchConfig} />
+        <div className="vacancies__search">
+          <SearchVacancy onChangeSearchConfig={handleChangeSearchConfig} />
+        </div>
 
         <Vacancies vacancies={vacancies} loading={loading} />
       </div>

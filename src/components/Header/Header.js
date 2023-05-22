@@ -2,8 +2,11 @@ import Union from '../../images/Union.svg'
 import './Header.css'
 
 import { Link } from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom'
 export function Header() {
+  const location = useLocation()
+  const isFav = location.pathname === '/favorite'
+
   return (
     <header>
       <Link to="/">
@@ -19,12 +22,18 @@ export function Header() {
       <div className="header__nav__wrap">
         <nav className="header__nav">
           <div>
-            <Link className="header__link" to="/">
+            <Link
+              className={!isFav ? 'header__link__active' : 'header__link'}
+              to="/"
+            >
               Поиск Вакансий
             </Link>
           </div>
           <div>
-            <Link className="header__link" to="/favorite">
+            <Link
+              className={isFav ? 'header__link__active' : 'header__link'}
+              to="/favorite"
+            >
               Избранное
             </Link>
           </div>

@@ -12,12 +12,14 @@ export function SearchVacancy({ onChangeSearchConfig }) {
   return (
     <div className="search">
       <Input
+        className="search__input"
         placeholder="Введите название вакансии"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         icon={<IconSearch />}
+        maxLength={78}
       />
-      <Button onClick={handleApplySearch}>
+      <Button onClick={handleApplySearch} className="search__button">
         Поиск
       </Button>
     </div>
