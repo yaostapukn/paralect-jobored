@@ -62,3 +62,9 @@
   line-height: 20px;
   color: #232134;
 }
+
+.vacancy__title__star {
+  display: flex;
+  justify-content: space-between;
+  width: 725px;
+}

@@ -24,7 +24,9 @@ export function Header() {
             </Link>
           </div>
           <div>
-            <Link className="header__link">Избранное</Link>
+            <Link className="header__link" to="/favorite">
+              Избранное
+            </Link>
           </div>
         </nav>
       </div>

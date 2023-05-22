@@ -3,6 +3,7 @@ import { JobSeacrch } from './pages/JobSearch'
 import { VacanciesDetail } from './pages/VacanciesDetail'
 import { AuthProvider } from './service/AuthProvider'
 import { Header } from './components/Header/Header'
+import { Favorite } from './pages/Favorite'
 export default function App() {
   return (
     <Router>
@@ -11,6 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<JobSeacrch />} />
           <Route path="/:id" element={<VacanciesDetail />} />
+          <Route path="favorite" element={<Favorite />} />
         </Routes>
       </AuthProvider>
     </Router>
