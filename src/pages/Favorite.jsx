@@ -4,10 +4,8 @@ import { Pagination } from '@mantine/core'
 import { useState, useEffect } from 'react'
 import './styles/Favorite.css'
 export function Favorite() {
-  const fav = JSON.parse(localStorage.getItem('fav'))
-
   const PAGESIZE = 4
-
+  const fav = JSON.parse(localStorage.getItem('fav'))
   const [page, setPage] = useState(1)
   const [records, setRecords] = useState(fav.slice(0, PAGESIZE))
 

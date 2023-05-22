@@ -68,6 +68,9 @@ export function JobSeacrch() {
     setLoading(false)
     setPage(newPage)
   }
+
+
+  
   return (
     <div className="vacancies">
       <div className="vacancies__filter">
@@ -88,8 +91,6 @@ export function JobSeacrch() {
             total={125}
             onChange={handleChangePage}
             position="center"
-            boundaries= {1}
-            
             styles={{
               control: {
                 height: '32px',

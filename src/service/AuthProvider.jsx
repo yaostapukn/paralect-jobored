@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react'
+import { createContext } from 'react'
 import { urlsBase } from './urlsBase'
 
 const AuthContext = createContext()
@@ -64,8 +64,6 @@ export function AuthProvider({ children }) {
 
     // const totalCount = 500
     // const totalPages = Math.ceil(totalCount / 4);
-  
-   
 
     return vacancies
   }
