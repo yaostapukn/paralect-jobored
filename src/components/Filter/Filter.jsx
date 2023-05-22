@@ -40,6 +40,7 @@ export function Filter({ onChangeFilterConfig, cataloges }) {
         </div>
         <h3 className="filter__text">Отрасль</h3>
         <Select
+          data-elem="industry-select"
           className="filter__dropdown"
           placeholder="Выберите отрасль"
           data={cataloges}
@@ -70,7 +71,7 @@ export function Filter({ onChangeFilterConfig, cataloges }) {
           onChange={setPaymentFromConfig}
           value={paymentFromConfig}
           w={275}
-       
+          data-elem="salary-from-input"
         />
         <NumberInput
           className="filter__to"
@@ -81,8 +82,9 @@ export function Filter({ onChangeFilterConfig, cataloges }) {
           onChange={setPaymentToConfig}
           value={paymentToConfig}
           w={275}
+          data-elem="salary-to-input"
         />
-        <Button onClick={handleApplyFilter} w={275}>
+        <Button onClick={handleApplyFilter} w={275} data-elem="search-button">
           Применить
         </Button>
       </div>

@@ -8,7 +8,11 @@ export function VacanciesCard({ vacancies, isLink = true }) {
   return (
     <>
       {vacancies.map((vacancy) => (
-        <div key={vacancy.id} className="vacancy__wrap">
+        <div
+          key={vacancy.id}
+          className="vacancy__wrap"
+          data-elem={`vacancy-${vacancy.id}`}
+        >
           <div className="vacancy">
             <div className="vacancy__title__star">
               {isLink ? (

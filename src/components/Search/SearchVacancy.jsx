@@ -12,6 +12,7 @@ export function SearchVacancy({ onChangeSearchConfig }) {
   return (
     <div className="search">
       <Input
+        data-elem="search-input"
         placeholder="Введите название вакансии"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -40,6 +41,7 @@ export function SearchVacancy({ onChangeSearchConfig }) {
         }}
       />
       <Button
+        data-elem="search-button"
         onClick={handleApplySearch}
         styles={{
           root: {

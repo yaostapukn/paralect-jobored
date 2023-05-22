@@ -30,7 +30,10 @@ function StarIcon({ vacancyProp }) {
   }
 
   return (
-    <div onClick={handleChangeFillFav}>
+    <div
+      onClick={handleChangeFillFav}
+      data-elem={`vacancy-${vacancyProp.id}-shortlist-button`}
+    >
       <svg
         width="22"
         height="22"
