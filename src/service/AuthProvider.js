@@ -76,7 +76,7 @@ export function AuthProvider({ children }) {
       },
     })
     const data = await response.json()
-    return data
+    return [data].map(changeViewJob)
   }
 
   const getCataloges = async () => {
@@ -139,4 +139,3 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   )
 }
-

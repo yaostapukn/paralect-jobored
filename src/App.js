@@ -5,6 +5,9 @@ import { AuthProvider } from './service/AuthProvider'
 import { Header } from './components/Header/Header'
 import { Favorite } from './pages/Favorite'
 export default function App() {
+  if (!localStorage.getItem('fav')) {
+    localStorage.setItem('fav', JSON.stringify([]))
+  }
   return (
     <Router>
       <AuthProvider>

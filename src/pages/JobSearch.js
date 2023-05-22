@@ -27,6 +27,7 @@ export function JobSeacrch() {
       if (!localStorage.getItem('authTokens')) {
         await getAuthToken()
       }
+      
       const vacanciesData = await getVacancies(filterConfig, searchConfig)
       const catalogesData = await getCataloges()
       setVacancies(vacanciesData)
