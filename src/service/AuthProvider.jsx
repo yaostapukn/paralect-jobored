@@ -123,7 +123,7 @@ export function AuthProvider({ children }) {
       if (from === to || from === 0) {
         return `з/п ${to} ${payment}`
       } else if (from < to) {
-        return `з/п ${from} - ${to} ${payment}`
+        return `з/п ${from} - ${to} ${payment}` 
       } else if (to === 0) {
         return `з/п от ${from} ${payment}`
       }
