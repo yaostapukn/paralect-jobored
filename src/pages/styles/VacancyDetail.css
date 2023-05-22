@@ -4,16 +4,16 @@
   width: 773px;
 }
 .vacancydetail__richtext {
-    margin: 24px;
+  margin: 24px;
 }
 
 .vacancydetail__wrap {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .loader__wrap {
   display: flex;
-  justify-content: center
+  justify-content: center;
   
 }

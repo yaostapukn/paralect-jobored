@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import frameNotFound from '../../images/Frame.png'
+import frameNotFound from '../../public/images/Frame.png'
 
 import './NotFound.css'
 export default function NotFound() {

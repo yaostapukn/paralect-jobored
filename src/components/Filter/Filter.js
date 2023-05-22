@@ -60,7 +60,7 @@ export function Filter({ onChangeFilterConfig, cataloges }) {
             </>
           }
         />
-        <h3 className="filter__text">Окдад</h3>
+        <h3 className="filter__text">Оклад</h3>
         <NumberInput
           className="filter__from"
           placeholder="От"

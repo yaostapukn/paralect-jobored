@@ -6,7 +6,7 @@ export function Vacancies({ vacancies, loading }) {
     return <LoaderComp />
   }
 
-  if (vacancies.length === 0) {
+  if (vacancies && vacancies.length === 0) {
     return <NotFound />
   }
   return (

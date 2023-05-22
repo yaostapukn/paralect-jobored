@@ -3,9 +3,9 @@ import { Filter } from '../components/Filter/Filter'
 import { SearchVacancy } from '../components/Search/SearchVacancy'
 import AuthContext from '../service/AuthProvider'
 import { useState, useEffect, useContext } from 'react'
+import { Pagination } from '@mantine/core'
 
 import './styles/JobSearch.css'
-import { LoaderComp } from '../components/Loader/Loader'
 
 export function JobSeacrch() {
   //context
@@ -20,7 +20,7 @@ export function JobSeacrch() {
     catalogues: '',
   })
   const [searchConfig, setSearchConfig] = useState('')
-
+  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -29,16 +29,16 @@ export function JobSeacrch() {
         await getAuthToken()
       }
 
-      const vacanciesData = await getVacancies(filterConfig, searchConfig)
+      const vacanciesData = await getVacancies(filterConfig, searchConfig, page)
       const catalogesData = await getCataloges()
       setVacancies(vacanciesData)
       setCataloges(catalogesData)
       setLoading(true)
     }
     fetchData()
-  }, [filterConfig, searchConfig])
+  }, [filterConfig, searchConfig, page])
 
-  //func callback filer
+  //func callback filter
   const handleChangeFilterConfig = (
     catalogeKey = '',
     payFrom = null,
@@ -53,7 +53,6 @@ export function JobSeacrch() {
     })
   }
 
-
   //func callback search
   const handleChangeSearchConfig = (keyword) => {
     //из-того что если keyword не поменяется setSearchConfig
@@ -62,8 +61,12 @@ export function JobSeacrch() {
     //TODO : если состаяние не поменялось setSearchConfig должен сетить
 
     // setLoading(false)
-
     setSearchConfig(keyword)
+  }
+
+  const handleChangePage = (newPage) => {
+    setLoading(false)
+    setPage(newPage)
   }
   return (
     <div className="vacancies">
@@ -79,6 +82,27 @@ export function JobSeacrch() {
         </div>
 
         <Vacancies vacancies={vacancies} loading={loading} />
+        <div className='vacancies__pag'>
+          <Pagination
+            page={page}
+            total={125}
+            onChange={handleChangePage}
+            position="center"
+            boundaries= {1}
+            
+            styles={{
+              control: {
+                height: '32px',
+                fontFamily: 'Inter',
+                fontWeight: '400',
+                fontSize: '16px',
+                borderRadius: '4px',
+                color: '#232134',
+                border: '1px solid #D5D6DC',
+              },
+            }}
+          />
+        </div>
       </div>
     </div>
   )

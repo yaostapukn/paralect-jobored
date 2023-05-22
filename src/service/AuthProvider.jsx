@@ -61,6 +61,12 @@ export function AuthProvider({ children }) {
 
     const data = await response.json()
     const vacancies = data.objects.map(changeViewJob)
+
+    // const totalCount = 500
+    // const totalPages = Math.ceil(totalCount / 4);
+  
+   
+
     return vacancies
   }
 

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
-import LocationsSvg from '../../images/Locations.svg'
+import LocationsSvg from '../../public/images/Locations.svg'
 
 import StarIcon from '../Star/StarIcon'
-
 import './VacanciesCard.css'
 
 export function VacanciesCard({ vacancies, isLink = true }) {

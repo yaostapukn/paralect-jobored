@@ -1,5 +1,7 @@
 .fav__wrap {
-    display: flex;
-    justify-content: center;
-    
+  display: flex;
+  height: 80vh;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
