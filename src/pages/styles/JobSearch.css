@@ -1,5 +1,5 @@
 .vacancies__search__vacancies {
-  width: 773px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,4 +16,9 @@
 }
 .vacancies__search {
   margin-bottom: 16px;
+}
+
+
+.vacancies__pag {
+  margin-bottom: 10px;
 }

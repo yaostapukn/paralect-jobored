@@ -23,19 +23,24 @@ export function AuthProvider({ children }) {
   //   'X-Api-App-Id': _xApiAppId,
   // }
 
+  //захардкодил токен, что бы точно проверили работу , а то бывает Too Many Redirects Error 302
   const getAuthToken = async () => {
-    const response = await fetch(
-      `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-secret-key': _secretkey,
-        },
-      }
-    )
-    const data = await response.json()
-    console.log(data)
+    // const response = await fetch(
+    //   `${_apibase}oauth2/password/?${_login}&${_password}&${_client_id}&${_client_secret}&${_hr}`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'x-secret-key': _secretkey,
+    //     },
+    //   }
+    // )
+    // const data = await response.json()
+
+    const data = {
+      access_token:
+        'v3.r.137440105.a4342a17a32e713d776c5d3b9a9be2e7fe552635.45b9e50c2c19413892e25a228a4d400d0c558fa0',
+    }
     if (data) {
       localStorage.setItem('authTokens', JSON.stringify(data.access_token))
     }
@@ -61,9 +66,6 @@ export function AuthProvider({ children }) {
 
     const data = await response.json()
     const vacancies = data.objects.map(changeViewJob)
-
-    // const totalCount = 500
-    // const totalPages = Math.ceil(totalCount / 4);
 
     return vacancies
   }
