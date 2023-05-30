@@ -25,9 +25,7 @@ export function JobSeacrch() {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!localStorage.getItem('authTokens')) {
-        await getAuthToken()
-      }
+      await getAuthToken()
 
       const vacanciesData = await getVacancies(filterConfig, searchConfig, page)
       const catalogesData = await getCataloges()
@@ -69,8 +67,6 @@ export function JobSeacrch() {
     setPage(newPage)
   }
 
-
-  
   return (
     <div className="vacancies">
       <div className="vacancies__filter">
@@ -85,7 +81,7 @@ export function JobSeacrch() {
         </div>
 
         <Vacancies vacancies={vacancies} loading={loading} />
-        <div className='vacancies__pag'>
+        <div className="vacancies__pag">
           <Pagination
             page={page}
             total={125}

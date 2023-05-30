@@ -36,14 +36,13 @@ export function AuthProvider({ children }) {
     //   }
     // )
     // const data = await response.json()
-
+    // console.log(data)
     const data = {
       access_token:
-        'v3.r.137440105.a4342a17a32e713d776c5d3b9a9be2e7fe552635.45b9e50c2c19413892e25a228a4d400d0c558fa0',
+        'v3.r.137440105.6272e7e2d9265fcdbf385e8ca2db7915e47d3e0f.7795c599d9279010378e817d8f036c233d6bcbbf',
     }
-    if (data) {
-      localStorage.setItem('authTokens', JSON.stringify(data.access_token))
-    }
+
+    localStorage.setItem('authTokens', JSON.stringify(data.access_token))
   }
 
   const getVacancies = async (filterConfig, keyword, numPage = 1) => {
@@ -123,7 +122,7 @@ export function AuthProvider({ children }) {
       if (from === to || from === 0) {
         return `з/п ${to} ${payment}`
       } else if (from < to) {
-        return `з/п ${from} - ${to} ${payment}` 
+        return `з/п ${from} - ${to} ${payment}`
       } else if (to === 0) {
         return `з/п от ${from} ${payment}`
       }
